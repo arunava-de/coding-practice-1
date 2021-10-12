@@ -13,7 +13,7 @@ def kth_smallest(matrix, k):
         j = n-1
 
         for i in range(n):
-            if matrix[i][0]<=mid:
+            if matrix[i][0]>mid:
                 break 
             while matrix[i][j]>mid:
                 j -= 1
@@ -23,7 +23,7 @@ def kth_smallest(matrix, k):
             low = mid+1
         else:
             ans = mid 
-            high = mid-1 # To take core of the case that mid is not in the matrix 
+            high = mid-1 # To take care of the case that mid is not in the matrix 
 
     return ans 
 
