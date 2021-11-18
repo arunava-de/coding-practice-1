@@ -5,6 +5,14 @@ def calculate(s):
     curr = ""
     op = "+"
 
+    def divide(a, b):
+        sign_a = -1 if a<0 else 1
+        sign_b = -1 if b<0 else 1
+        a = abs(a)
+        b = abs(b)
+        div = a//b 
+        return div if sign_a==sign_b else -div
+
     for i in range(n):
         if s[i].isnumeric():
             curr += s[i]
@@ -18,7 +26,7 @@ def calculate(s):
                 S.append(prev*int(curr))
             elif op=="/":
                 prev = S.pop()
-                S.append(prev//int(curr))
+                S.append(divide(prev, int(curr)))
             op = s[i]
             curr = ""
             
@@ -30,3 +38,13 @@ def calculate(s):
     return res 
         
 s = "3*2+2"
+calculate(s)
+
+s = " 3/2 "
+calculate(s)
+
+s = " 3+5 / 2 "
+calculate(s)
+
+s = "14-3/2"
+calculate(s)
