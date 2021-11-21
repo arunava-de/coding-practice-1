@@ -3,29 +3,19 @@ def remove_duplicates(head):
     if head==None:
             return 
 
-    prev = None 
-    curr = head 
-    nxt = head.next 
+    sent = ListNode(0, head)
+    prev = sent 
 
-    while curr!=None and nxt!=None:
-        while nxt!=None and curr.val==nxt.val:
-            nxt = nxt.next
-        if curr.next==nxt: # No duplicates found
-            curr = curr.next
-            nxt = nxt.next
-            if prev==None:
-                prev = head
-            else:
-                prev = prev.next
-            prev.next = curr
-        else: # Duplicates found 
-            if prev!=None:
-                prev.next = nxt 
-                if nxt==None:
-                    break
-            curr = nxt 
-            nxt = curr.next
+    while head:
+        if head.next and head.val==head.next.val:
+            while head.next and head.val==head.next.val:
+                head = head.next 
+            prev.next = head.next 
+        else:
+            prev = prev.next 
 
-    return head 
+        head = head.next 
+
+    return sent.next 
 
 
