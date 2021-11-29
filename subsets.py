@@ -12,7 +12,7 @@ def subsets(nums):
 
         for i in range(first, n):
             curr.append(nums[i])
-            recur(i+1, curr)
+            recur(i+1, curr, k)
             curr.pop()
 
     for k in range(n+1):
