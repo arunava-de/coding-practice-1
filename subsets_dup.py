@@ -2,21 +2,22 @@ def subsets_with_dup(nums):
     if nums==[]:
         return [[]]
 
-    n = len(nums)
     nums.sort()
     output = [] 
+    
+    def dfs(curr, nums):
 
-    def recur(first, curr, k):
-        if len(curr)==k:
-            output.append(curr[:])
+        output.append(curr)
 
-        for i in range(first, n-1):
-            if nums[i]==nums[i+1]:
+        if len(nums)==0:
+            return 
+
+        for i in range(len(nums)):
+            if i>0 and nums[i]==nums[i-1]:
                 continue 
-            curr.append(nums[i])
-            recur(i+1, curr)
-            curr.pop()
-        
-        curr.append(nums[-1])
-            recur(n, curr)
-            curr.pop()
+            dfs(curr+[nums[i]], nums[i+1:])
+
+    dfs([], nums)
+    return output 
+
+subsets_with_dup([1,2,2])
